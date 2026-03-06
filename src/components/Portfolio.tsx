@@ -1,5 +1,5 @@
 // Portfolio.tsx
-import { useEffect, useState } from "react";
+import { useEffect, useState, FormEvent, ChangeEvent } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -23,6 +23,51 @@ const Portfolio = ({ isDark, toggleTheme }: PortfolioProps) => {
   const [projectsVisible, setProjectsVisible] = useState(false);
   const [certificationsVisible, setCertificationsVisible] = useState(false);
   const [contactVisible, setContactVisible] = useState(false);
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: ""
+  });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    const discordMessage = {
+      content: `**New Message from Portfolio**\n**Name:** ${formData.name}\n**Email:** ${formData.email}\n**Message:** ${formData.message}`
+    };
+
+    try {
+      const response = await fetch('https://discordapp.com/api/webhooks/1479474596859088896/OvJ8zGtBfAEadnZjvXvonkHNp-vPxYDlpFwUO4xU7dGFWPJIWamqJGj1Dbo_j88qgP0w', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(discordMessage),
+      });
+
+      if (response.ok) {
+        alert("Message received! Thanks for reaching out. I'll get back to you as soon as possible.");
+        setFormData({ name: "", email: "", message: "" });
+        (e.target as HTMLFormElement).reset();
+      } else {
+        alert("Something went wrong while sending to Discord. Please check your Webhook URL.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Error sending message. Please check your connection.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
 
   const terminalLines = [
     "Initializing Portfolio...",
@@ -87,7 +132,7 @@ const Portfolio = ({ isDark, toggleTheme }: PortfolioProps) => {
       (entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            switch(entry.target.id) {
+            switch (entry.target.id) {
               case 'about': setAboutVisible(true); break;
               case 'experience': setExperienceVisible(true); break;
               case 'projects': setProjectsVisible(true); break;
@@ -184,9 +229,8 @@ Enhanced ability to transform complex datasets into clear, interactive reports, 
       <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
         <nav className="container mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
-            <div className={`text-xl font-bold gradient-text font-orbitron transition-all duration-300 ${
-              showHeaderName ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform -translate-y-2'
-            }`}>
+            <div className={`text-xl font-bold gradient-text font-orbitron transition-all duration-300 ${showHeaderName ? 'opacity-100 transform translate-y-0' : 'opacity-0 transform -translate-y-2'
+              }`}>
               <a href="#home" className="text-muted-foreground hover:text-primary transition-colors">ANSH</a>
             </div>
             <div className="hidden md:flex space-x-8">
@@ -214,7 +258,7 @@ Enhanced ability to transform complex datasets into clear, interactive reports, 
               left: Math.random() * 100 + "%",
               animationDelay: Math.random() * 8 + "s",
               background: i % 3 === 0 ? "hsl(var(--cyber-pink))" :
-                               i % 3 === 1 ? "hsl(var(--cyber-cyan))" : "hsl(var(--cyber-purple))"
+                i % 3 === 1 ? "hsl(var(--cyber-cyan))" : "hsl(var(--cyber-purple))"
             }}
           />
         ))}
@@ -298,8 +342,8 @@ Enhanced ability to transform complex datasets into clear, interactive reports, 
                   <div>
                     <h3 className="text-2xl font-bold mb-4 gradient-text">Background</h3>
                     <p className="text-muted-foreground leading-relaxed">
-                      I'm a final-year Computer Engineering (AI Major) student who got curious about 
-                      how machines "think" and ended up teaching them to do just that! From deep learning to data science, 
+                      I'm a final-year Computer Engineering (AI Major) student who got curious about
+                      how machines "think" and ended up teaching them to do just that! From deep learning to data science,
                       I love turning complex tech into smart, practical solutions that make life easier (and a little cooler).
                     </p>
                   </div>
@@ -474,7 +518,7 @@ Enhanced ability to transform complex datasets into clear, interactive reports, 
               <div className="space-y-6">
                 <h3 className="text-2xl font-bold gradient-text">Let's Connect</h3>
                 <p className="text-muted-foreground">
-                  Always up for new opportunities, cool collaborations, or just geeking out over 
+                  Always up for new opportunities, cool collaborations, or just geeking out over
                   the latest in AI and tech. If it involves code, data, or even a good meme about machine learning, I’m in!
                 </p>
                 <div className="flex gap-4">
@@ -491,29 +535,41 @@ Enhanced ability to transform complex datasets into clear, interactive reports, 
               </div>
 
               <Card className="cyber-card">
-                <form className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <Input
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
                       placeholder="Your Name"
+                      required
                       className="bg-background/50 border-primary/30 focus:border-primary cyber-glow"
                     />
                   </div>
                   <div>
                     <Input
+                      name="email"
                       type="email"
+                      value={formData.email}
+                      onChange={handleChange}
                       placeholder="Your Email"
+                      required
                       className="bg-background/50 border-primary/30 focus:border-primary cyber-glow"
                     />
                   </div>
                   <div>
                     <Textarea
+                      name="message"
+                      value={formData.message}
+                      onChange={handleChange}
                       placeholder="Your Message"
                       rows={4}
+                      required
                       className="bg-background/50 border-primary/30 focus:border-primary cyber-glow"
                     />
                   </div>
-                  <Button className="w-full cyber-glow">
-                    Send Message
+                  <Button type="submit" className="w-full cyber-glow" disabled={isSubmitting}>
+                    {isSubmitting ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
               </Card>
