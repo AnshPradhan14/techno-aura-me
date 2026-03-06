@@ -166,46 +166,86 @@ const Portfolio = ({ isDark, toggleTheme }: PortfolioProps) => {
   }, []);
 
   const skills = [
-    "Python", "Machine Learning", "Deep Learning", "TensorFlow", "PyTorch",
-    "Power BI", "SQL", "JavaScript", "React", "HTML/CSS", "Streamlit",
-    "GitHub", "Data Science", "Computer Vision", "NLP", "AI/ML"
-  ];
+    "Python",
+    "SQL",
+    "JavaScript",
+    "R Programming",
 
+    "Machine Learning",
+    "Deep Learning",
+    "Data Science",
+
+    "TensorFlow",
+    "PyTorch",
+    "Scikit-learn",
+
+    "Computer Vision",
+    "NLP",
+
+    "LLMs",
+    "RAG",
+    "LangChain",
+    "AI Agents",
+    "Vector Databases",
+
+    "Power BI",
+
+    "FastAPI",
+    "Streamlit",
+    "Docker",
+    "Git"
+  ];
   const experiences = [
+    {
+      title: "AI/ML Research Intern",
+      company: "Institute for Plasma Research (IPR) – Dept. of Atomic Energy, Govt. of India",
+      period: "February 2026 – Present",
+      bullets: [
+        "Researching Retrieval-Augmented Generation (RAG) architectures and LLM-based systems for building domain-specific knowledge retrieval solutions.",
+        "Analyzing modern RAG pipelines, hybrid retrieval techniques, and LLM orchestration frameworks through research and survey papers.",
+        "Experimenting with document chunking strategies, semantic embeddings, and vector search methods to improve retrieval accuracy.",
+        "Designing a scalable RAG-powered knowledge base for intelligent querying."
+      ]
+    },
     {
       title: "AI/ML Intern",
       company: "Edunet Foundation",
       period: "June 2025 - August 2025",
-      description: `Built an interactive employee income prediction app using ML algorithms and the UCI Adult dataset for real-time insights.
-Created a Streamlit interface allowing feature selection and multi-model comparison for personalized forecasting.
-Delivered end-to-end pipeline from preprocessing and evaluation to cloud deployment, achieving 86%+ accuracy.`
+      bullets: [
+        "Built an interactive employee income prediction app using ML algorithms and the UCI Adult dataset for real-time insights.",
+        "Created a Streamlit interface allowing feature selection and multi-model comparison for personalized forecasting.",
+        "Delivered end-to-end pipeline from preprocessing and evaluation to cloud deployment, achieving 86%+ accuracy."
+      ]
     },
     {
       title: "AI/ML & Data Science Intern",
       company: "India Space Academy",
       period: "June 2025 - July 2025",
-      description: `1. Dynamical Mass Calculation of a Galaxy Cluster:
-Applied statistical outlier detection and velocity dispersion analysis on large astrophysical datasets to estimate cluster mass using physics-informed regression techniques.
-2. Measuring Cosmological Parameters Using Type Ia Supernovae:
-Performed nonlinear curve fitting and numerical integration on observational supernova data to accurately model universe expansion parameters, leveraging advanced optimization and data modeling methods.
-3. Tracking the International Space Station (ISS):
-Developed a real-time spatiotemporal data pipeline and interactive web dashboard to analyze satellite trajectories and predict visibility windows using geospatial data processing and event forecasting.`
+      bullets: [
+        "Applied statistical outlier detection and velocity dispersion analysis on large astrophysical datasets to estimate galaxy cluster mass using physics-informed regression techniques.",
+        "Performed nonlinear curve fitting and numerical integration on observational supernova data to accurately model universe expansion parameters, leveraging advanced optimization and data modeling methods.",
+        "Developed a real-time spatiotemporal data pipeline and interactive web dashboard to analyze ISS trajectories and predict visibility windows using geospatial data processing."
+      ]
     },
     {
       title: "Vice President - Computer Society & Gaming Club",
       company: "Intitute of Advanced Research",
       period: "March 2024 - August 2025",
-      description: `Led strategic event planning to boost participation by 65% through organizing major hackathons, coding challenges, and AI workshops.
-Built industry partnerships and secured funding for three large-scale university tech events, enhancing campus engagement.
-Mentored 20+ students and coordinated with stakeholders to foster an innovative, collaborative tech community.`
+      bullets: [
+        "Led strategic event planning to boost participation by 65% through organizing major hackathons, coding challenges, and AI workshops.",
+        "Built industry partnerships and secured funding for three large-scale university tech events, enhancing campus engagement.",
+        "Mentored 20+ students and coordinated with stakeholders to foster an innovative, collaborative tech community."
+      ]
     },
     {
       title: "Python Developer Intern",
       company: "Oasis Infobyte",
       period: "March 2024 - April 2024",
-      description: `Developed a PyQt-based weather forecasting tool leveraging time-series analysis to deliver accurate, data-driven predictions for users.
-Built a machine learning system for BMI prediction, showcasing how health analytics can provide personalized, actionable insights.
-Enhanced ability to transform complex datasets into clear, interactive reports, strengthening data communication and user engagement skills.`
+      bullets: [
+        "Developed a PyQt-based weather forecasting tool leveraging time-series analysis to deliver accurate, data-driven predictions for users.",
+        "Built a machine learning system for BMI prediction, showcasing how health analytics can provide personalized, actionable insights.",
+        "Enhanced ability to transform complex datasets into clear, interactive reports, strengthening data communication and user engagement skills."
+      ]
     }
   ];
 
@@ -299,20 +339,21 @@ Enhanced ability to transform complex datasets into clear, interactive reports, 
                 ANSH<br />PRADHAN
               </h1>
               <div className="text-xl lg:text-2xl text-muted-foreground">
-                AI & ML Enthusiast | Computer Engineering Student
+                AI/ML Engineer | LLM, RAG & Intelligent Systems
               </div>
               <p className="text-lg text-muted-foreground max-w-xl">
-                Passionate about artificial intelligence, machine learning, and building innovative solutions
-                that bridge the gap between technology and human needs.
+                Focused on building practical AI applications from RAG-based assistants and ML models to data-driven systems that turn complex data into useful insights.
               </p>
               <div className="flex gap-4">
                 <Button className="cyber-glow">
                   <Download className="mr-2 h-4 w-4" />
                   Download CV
                 </Button>
-                <Button variant="outline" className="neon-border">
-                  <Mail className="mr-2 h-4 w-4" />
-                  Contact Me
+                <Button variant="outline" className="neon-border" asChild>
+                  <a href="#contact">
+                    <Mail className="mr-2 h-4 w-4" />
+                    Contact Me
+                  </a>
                 </Button>
               </div>
             </div>
@@ -342,16 +383,14 @@ Enhanced ability to transform complex datasets into clear, interactive reports, 
                   <div>
                     <h3 className="text-2xl font-bold mb-4 gradient-text">Background</h3>
                     <p className="text-muted-foreground leading-relaxed">
-                      I'm a final-year Computer Engineering (AI Major) student who got curious about
-                      how machines "think" and ended up teaching them to do just that! From deep learning to data science,
-                      I love turning complex tech into smart, practical solutions that make life easier (and a little cooler).
+                      Final-year Computer Engineering (AI Major) student passionate about building intelligent systems with machine learning, data science, and modern AI. I enjoy turning complex data and ideas into practical applications from predictive models and analytics to LLM and RAG-powered tools.
                     </p>
                   </div>
                   <div>
                     <h3 className="text-2xl font-bold mb-4 gradient-text">Focus Areas</h3>
                     <ul className="text-muted-foreground space-y-2">
                       <li>• Machine Learning & Deep Learning</li>
-                      <li>• Natural Language Processing & LLM</li>
+                      <li>• Large Language Models & RAG</li>
                       <li>• Data Science & Analytics</li>
                       <li>• AI-powered Web Applications</li>
                     </ul>
@@ -408,7 +447,14 @@ Enhanced ability to transform complex datasets into clear, interactive reports, 
                     <h3 className="text-xl font-bold gradient-text">{exp.title}</h3>
                     <p className="text-primary font-semibold">{exp.company}</p>
                     <p className="text-sm text-muted-foreground mb-2">{exp.period}</p>
-                    <p className="text-muted-foreground whitespace-pre-wrap">{exp.description}</p>
+                    <ul className="text-muted-foreground space-y-2">
+                      {exp.bullets.map((bullet, i) => (
+                        <li key={i} className="flex gap-2">
+                          <span className="text-primary">•</span>
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </Card>
                 </div>
               ))}
@@ -425,32 +471,38 @@ Enhanced ability to transform complex datasets into clear, interactive reports, 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {[
                 {
-                  title: "Chatur AI - Chatbot",
-                  description: "A smart RAG chatbot for students that provides context-aware answers from PDFs, URLs and general knowledge using Groq LLM. Deployed on Telegram and Streamlit.",
-                  tech: ["RAG", "LangChain", "LLM", "Streamlit"],
+                  title: "Startup Idea Evaluator",
+                  description: "AI-powered startup analysis tool that uses agent-based workflows to research market trends, competitors, and feasibility using Gemini API and SerpAPI. Generates automated reports to assist early-stage idea validation. Helps entrepreneurs quickly evaluate business ideas and make data-informed decisions before investing time and resources.",
+                  tech: ["AI Agents", "CrewAI", "SerpAPI", "Streamlit", "Google Gemini API"],
+                  link: "https://github.com/AnshPradhan14/startup-idea-evaluator"
+                },
+                {
+                  title: "Chatur AI",
+                  description: "An advanced RAG-powered study companion utilizing hierarchical retrieval and agentic workflows for hallucination-free document analysis. Deployed on Hugging Face, it leverages Groq LLMs and MongoDB for high-speed, context-aware Q&A. It seamlessly processes multi-format educational materials to provide precise, real-time knowledge retrieval.",
+                  tech: ["LangChain", "ChromaDB", "FastAPI", "HuggingFace"],
                   link: "https://github.com/AnshPradhan14/Chatur_AI"
                 },
                 {
                   title: "Age & Gender Detection",
-                  description: "Developed and Trained a deep learning model to predict age and gender from facial images using a multi-output CNN architecture for simultaneous regression (age) and classification (gender).",
-                  tech: ["CNN", "VGG 16", "OpenCV", "TensorFlow"],
+                  description: "A high-performance computer vision system that performs real-time demographic analysis using deep learning, leveraging OpenCV for facial recognition. Features optimized CNN architectures to accurately predict age ranges and gender from live camera feeds or static images with low-latency inference.",
+                  tech: ["CNN", "VGG 16", "TensorFlow", "Computer Vision"],
                   link: "https://github.com/AnshPradhan14/Age-and-Gender-Prediction"
                 },
                 {
                   title: "Restaurant Data Analysis & Prediction",
-                  description: "In-depth analysis of restaurant data, aiming to extract meaningful insights and build predictive models to support customer decisions and business strategy.",
+                  description: "An end-to-end data science project that performs deep exploratory data analysis and predictive modeling on restaurant datasets. It leverages machine learning to identify key success factors, visualize dining trends, and predict restaurant ratings based on location, cuisine, and cost.",
                   tech: ["Matplotlib", "Pandas", "Numpy", "Seaborn"],
                   link: "https://github.com/AnshPradhan14/Restaurant-Data-Analysis-and-Prediction"
                 },
                 {
                   title: "International Space Station Tracker",
-                  description: "This project delivers a Python-powered, real-time web dashboard for tracking the ISS, predicting its visibility, and analyzing its orbital changes.",
+                  description: "A comprehensive repository documenting industry-aligned projects completed during the ISA internship, focusing on core Machine Learning and Data Science workflows. Includes practical implementations of data preprocessing, feature engineering, and model optimization for real-world datasets.",
                   tech: ["requests", "skyfeild", "cartopy", "Streamlit"],
                   link: "https://github.com/AnshPradhan14/ISA_internship/tree/main/Project%203"
                 },
                 {
                   title: "Stock-Price Prediction",
-                  description: "Developed machine learning model for stock price prediction using yfinance API for data collection and Linear Regression and XGBoost for prediction.",
+                  description: "A financial forecasting tool that utilizes Time Series Analysis and Deep Learning to predict future stock market trends by extracting historical data using the YFinance API. It implements LSTM or GRU architectures to capture temporal dependencies in historical price data, providing automated trend visualization for traders.",
                   tech: ["Sklearn", "yfinance", "MySQL", "Pandas"],
                   link: "https://github.com/AnshPradhan14/Stock-Price-prediction"
                 }
@@ -522,14 +574,20 @@ Enhanced ability to transform complex datasets into clear, interactive reports, 
                   the latest in AI and tech. If it involves code, data, or even a good meme about machine learning, I’m in!
                 </p>
                 <div className="flex gap-4">
-                  <Button variant="outline" size="icon" className="cyber-glow">
-                    <Github className="h-5 w-5" />
+                  <Button variant="outline" size="icon" className="cyber-glow" asChild>
+                    <a href="https://github.com/AnshPradhan14" target="_blank" rel="noopener noreferrer">
+                      <Github className="h-5 w-5" />
+                    </a>
                   </Button>
-                  <Button variant="outline" size="icon" className="cyber-glow">
-                    <Linkedin className="h-5 w-5" />
+                  <Button variant="outline" size="icon" className="cyber-glow" asChild>
+                    <a href="https://www.linkedin.com/in/anshpradhan14/" target="_blank" rel="noopener noreferrer">
+                      <Linkedin className="h-5 w-5" />
+                    </a>
                   </Button>
-                  <Button variant="outline" size="icon" className="cyber-glow">
-                    <Mail className="h-5 w-5" />
+                  <Button variant="outline" size="icon" className="cyber-glow" asChild>
+                    <a href="mailto:anshpradhan911@gmail.com">
+                      <Mail className="h-5 w-5" />
+                    </a>
                   </Button>
                 </div>
               </div>
@@ -580,7 +638,7 @@ Enhanced ability to transform complex datasets into clear, interactive reports, 
         {/* Footer */}
         <footer className="py-8 text-center border-t border-border">
           <p className="text-muted-foreground">
-            © 2024 Ansh Pradhan. Built with passion and cutting-edge technology.
+            © 2026 Ansh Pradhan. Built with curiosity, code, and a passion for AI.
           </p>
         </footer>
       </div>
